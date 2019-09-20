@@ -1,0 +1,16 @@
+<div class="mx-auto mt-5 w-50">
+  <h1 class="text-center">All Guesses</h1>
+  <% @guesses.each do |guess| %>
+    <% if guess.next_number %>
+      <div class="card mb-1 <%= guess.correct ? 'bg-success' : 'bg-danger' %>">
+        <div class="card-body">
+          <strong>name:</strong> <%= guess.name %>
+          <strong>previous number:</strong> <%= guess.previous_number %>
+          <strong>next number:</strong> <%= guess.next_number %>
+          <strong>guess:</strong> <%= guess.guess %>
+          <strong>correct:</strong> <%= guess.correct %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
