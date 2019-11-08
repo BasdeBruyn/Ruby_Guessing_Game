@@ -1,17 +1,18 @@
 <div class="mx-auto mt-5 w-75">
+  <% current_guess = @guess_page.current_guess %>
   <div class="text-center">
     <h1>Guess if the next number is lower or higher</h1>
     <h2>Numbers are between 0 and 100</h2>
   </div>
   <div class="text-center" style="margin-top: 100px">
-    <h4>Lower or higher than <%= @next_number %>?</h4>
+    <h4>Lower or higher than <%= current_guess.next_number %>?</h4>
     <div class="container mt-5">
       <div class="row justify-content-center">
         <div class="col-2">
           <%= button_to "Lower",
                         guess_game_path,
                         { :method => :get,
-                          params: { :guess => "lower", :name => @name },
+                          params: { :guess => "lower", :name => current_guess.name },
                           :class => "btn btn-primary w-100" }
                         %>
         </div>
@@ -19,18 +20,18 @@
           <%= button_to "Higher",
                         guess_game_path,
                         { :method => :get,
-                          params:{ :guess => "higher", :name => @name },
+                          params:{ :guess => "higher", :name => current_guess.name },
                           :class => "btn btn-primary w-100" }
           %>
         </div>
       </div>
     </div>
   </div>
-  <% unless @initial %>
+  <% unless @guess_page.initial %>
     <div class="text-center mt-5">
-      <h4>The number was <%= @previous_number %> and the next number was <%= @next_number %>.</h4>
-      <h4>You guessed <%= @guess %>.</h4>
-        <% if @correct %>
+      <h4>The number was <%= current_guess.previous_number %> and the next number was <%= current_guess.next_number %>.</h4>
+      <h4>You guessed <%= current_guess.guess %>.</h4>
+        <% if current_guess.correct %>
           <h3 class="text-success mt-3">
             Correct!
           </h3>
@@ -42,7 +43,7 @@
     </div>
     <div class="text-center mt-5">
       <h5>Winning streak:</h5>
-      <h2><%= @winning_streak %></h2>
+      <h2><%= @guess_page.winning_streak %></h2>
     </div>
   <% end %>
 </div>
