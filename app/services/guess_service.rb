@@ -26,7 +26,7 @@ class GuessService
     @guess_page = GuessPage.new(current_guess, initial, winning_streak)
   end
 
-
+  GuessPage = Struct.new(:current_guess, :initial, :winning_streak)
 
   private
 
